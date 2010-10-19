@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />  
+  <title>Lighthouseapp - Sample Test Project for LEAN CR</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body class="firefox milestones-index">
+  <div id="container">
+    <!-- header -->
+        <div id="header" class="clear">
+
+          <div id="titles">
+            <h1>
+                <%= link_to 'Ruby on Rails', @milestone.url, :class=>'pname' %>
+            </h1>
+          </div>
+        </div>
+        <!-- /header -->
+    <div id="content">
+      <div id="main">
+        <div id="page-top">
+              <div class="greet clear">
+                <h2><%= @project.name %>: <%= @milestone.title %></h2>
+                <p class="gmeta">
+                      Expected: <%= @milestone.due_on.to_s(:month_and_day) %> | 
+                      <%= @milestone.open_tickets_count%> tickets remain, 
+                      <%= @milestone.tickets_count %> tickets total.
+                  </p>
+
+              </div>
+           </div>
+        <div id="main-content" class="clear">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+   </div>
+</body>
+</html>

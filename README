@@ -1,0 +1,32 @@
+== Lighthouse App tutorial
+
+This is an exercise in coding a Rails 3 app to use the Lighthouse API. It uses the 'lighthouse' api gem
+as indicated in the Gemfile.
+
+
+== Technical Decisions
+
+Although the app specifies a database the decision not to use it in the end was because the api gem
+returns the actual model objects without having to respecify them again or to store them for further
+processing since the task was to display them.
+
+There is only one main controller called 'Milestone' which selects the latest milestone from the API
+within the main Milestone controller. This uses helper methods within application_helper to grab hold
+of the Rails project on lighthouse and using that to select the upcoming milestone from it.
+
+Note that the Rails project ID is hardcoded - this is because a search for 'Rails' on lighthouse api
+returns 3 rails related projects and there is no way of selecting it out.
+
+Once the milestone object is retrieved, a call was made to get the tickets from the api. Note that the Lighthouse::Ticket.find method takes a current_page variable - This is because the api only returns its results
+in set of 30 by default so to get the next set , it must have a page variable passed to it. 
+
+This is also shown in the 'generate_further_links' call in the milestone_helper file. Strictly speaking, this is
+not pagination but allows one to pass the page params to get the next set of records.
+
+Also a 'q' params is added to get only 'open' tickets as specified in the task. Only tickets of the upcoming
+milestone is retrieved by specifying its name in the query and also sorting its results by the ticket id.
+
+There was an initial decision to make another controller for tickets so that clicking on it reveals more details
+but this is replaced by an external link to the ticket on the lighthouse app.
+
+

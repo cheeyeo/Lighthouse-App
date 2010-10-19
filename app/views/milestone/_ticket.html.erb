@@ -1,0 +1,10 @@
+<li class="aticket">
+  <span class="tnum2">#<%= ticket.attributes["number"] %></span>
+  <span>
+    <%=link_to ticket.attributes["title"] ,ticket.attributes['url'] , {:target=>"_blank"}%>
+  </span>
+  <span class="mstonetstate">
+    <span class="<%= generate_ticket_status_color(ticket) %>">
+      <%= ticket.attributes["state"] %>
+  </span>
+</li>

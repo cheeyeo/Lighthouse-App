@@ -1,0 +1,22 @@
+<div id="milestones">
+
+  <% unless @tickets.blank? %>
+    <ul class="ticket-list">
+        <%= render :partial => 'ticket', :collection => @tickets %>
+    </ul>
+    
+    <div class="pagination">
+      <% generate_further_links(@milestone).each do |e| %>
+        <% if params[:page].to_i == e%>
+          <%= link_to content_tag(:span, e,:class=>"current"), "?page=#{e}" %>
+        <% else %>
+         <%= link_to e, "?page=#{e}" %>
+        <% end %>
+      <% end %>
+    </div>
+    
+  <% else %>
+    <p>There are no more open tickets for this milestone.</p>
+  <% end %>
+</div>
+
